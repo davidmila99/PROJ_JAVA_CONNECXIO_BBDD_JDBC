@@ -204,8 +204,8 @@ public class JDBCConecxioBBDD implements Interficie{
                 ResultSet rs = st.executeQuery(que);
                 while (rs.next()) {
                     auxF = new Foto(rs.getInt("FOTOID"),
-                                    rs.getString("FOTOTITOL"),
-                                    rs.getString("FOTOURL"));
+                                    rs.getString("FOTOURL"),
+                                    rs.getString("FOTOTITOL"));
                  
                     auxP = new Punt(rs.getInt("PUNTNUMERO"),
                                     rs.getInt("RUTA"),
