@@ -12,15 +12,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author David
@@ -108,7 +102,6 @@ public class JDBCConecxioBBDD implements Interficie{
 
     @Override
     public ArrayList<Ruta> getRutaList() throws InterficieException{
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd G HH:mm:ss z");
         ArrayList<Ruta> ruts = new ArrayList<>();
         if(con != null){
             
@@ -133,13 +126,6 @@ public class JDBCConecxioBBDD implements Interficie{
                                     rs.getString("FOTOTITOL"));
                     auxC = new Categoria(rs.getInt("CATID"),
                                         rs.getString("CATNOM"));
-
-                    //rs.getDate("TEMPS");
-                    //Date d = (Date)rs.getObject("TEMPS");
-                    //java.sql.Date sqlDate = rs.getDate("TEMPS");
-                    //Date newDate = new Date();//rs.getTimestamp("TEMPS");
-                    //java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
-                    
                     auxR = new Ruta(rs.getInt("RUTID"),
                                     rs.getString("TITOL"),
                                     rs.getString("DESCR"),
@@ -147,14 +133,12 @@ public class JDBCConecxioBBDD implements Interficie{
                                     rs.getFloat("ALCMAX"),
                                     rs.getFloat("ALCMIN"),
                                     rs.getFloat("DIST"),
-                                    //rs.getTimestamp("TEMPS"),
+                                    rs.getLong("TEMPS"),
                                     rs.getBoolean("CIRC"),
                                     rs.getFloat("DIF"),
                                     rs.getString("GPX"),
                                     auxF,
                                     auxC);
-                    /*auxR = new Ruta();
-                    auxR.setId(rs.getInt("RUTID"));*/
                     ruts.add(auxR);
                 }
                 rs.close();
@@ -211,7 +195,7 @@ public class JDBCConecxioBBDD implements Interficie{
                                     rs.getInt("RUTA"),
                                     rs.getString("PUNTNOM"),
                                     rs.getString("PUNTDESC"),
-                                    //rs.getDate("HORA"),
+                                    rs.getLong("HORA"),
                                     rs.getDouble("LAT"),
                                     rs.getDouble("LONGITUD"),
                                     rs.getDouble("PUNTELEVACIO"),
